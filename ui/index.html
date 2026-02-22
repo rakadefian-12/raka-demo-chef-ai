@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700;800&display=swap"
+    rel="stylesheet">
+  <title>Ramadan Chef AI - Sahur & Buka Tanpa Bingung</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <header class="container">
+    <div class="hero-content">
+      <div class="brand-badge">
+        <strong>🌙 Ramadan Chef AI</strong>
+      </div>
+      <h1>
+        Bingung Sahur Masak Apa? <br /><span class="highlight">Tanya AI Aja!</span>
+      </h1>
+      <p>
+        Masukkan bahan yang ada di kulkasmu, pilih mood masak, dan biarkan AI
+        meracik resep spesial untuk Sahur & Buka Puasa.
+      </p>
+    </div>
+  </header>
+
+  <section id="features" class="container">
+    <div class="grid">
+      <div class="feature-item">
+        <i class="fas fa-bolt fa-lg"></i>
+        <div>
+          <strong>Kilat & Praktis</strong>
+          <small>Resep sahur < 15 menit</small>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-leaf fa-lg"></i>
+        <div>
+          <strong>Bahan Seadanya</strong>
+          <small>Masak dengan isi kulkas</small>
+        </div>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-brain fa-lg"></i>
+        <div>
+          <strong>Cerdas & Spesifik</strong>
+          <small>AI khusus menu Ramadan</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="grid">
+      <section>
+        <article class="input-card">
+          <header>
+            <h3>🍳 Isi Kulkas & Mood</h3>
+          </header>
+          <form id="recipeForm">
+            <label for="ingredients">
+              Bahan yang tersedia (pisahkan dengan koma/baris baru)
+              <textarea id="ingredients" rows="5" placeholder="Contoh: Telur, sosis, nasi sisa, kecap, bawang merah..."
+                required></textarea>
+            </label>
+
+            <label for="mood">
+              Mood Masak Hari Ini
+              <select id="mood" required>
+                <option value="" selected disabled>
+                  Pilih mood masak...
+                </option>
+                <option value="sahur-satset">
+                  ⚡ Sahur Sat-set (Max 15 menit)
+                </option>
+                <option value="buka-hemat">💸 Buka Puasa Hemat</option>
+                <option value="sehat-kuat">💪 Menu Sehat & Kuat Puasa</option>
+                <option value="takjil-manis">🍬 Takjil Manis & Segar</option>
+              </select>
+            </label>
+
+            <button type="submit" id="generateBtn" class="contrast">
+              <span class="btn-text">✨ Racik Resep Sekarang</span>
+              <span class="btn-loading" style="display: none"><i class="fas fa-circle-notch fa-spin"></i>
+                Meracik...</span>
+            </button>
+          </form>
+        </article>
+
+      </section>
+
+      <section id="recipeResult" class="recipe-container" style="display: none">
+        <article class="recipe-card">
+          <header class="recipe-header">
+            <div class="recipe-meta">
+              <span class="badge time"><i class="fas fa-clock"></i>
+                <span id="recipeTime">15 Min</span></span>
+              <span class="badge mood"><i class="fas fa-magic"></i>
+                <span id="recipeMood">Sat-set</span></span>
+            </div>
+            <h2 id="recipeTitle">Nasi Goreng Sahur Kilat</h2>
+          </header>
+
+          <div class="recipe-body">
+            <div class="recipe-section">
+              <h4>🛒 Bahan-bahan:</h4>
+              <ul id="recipeIngredients"></ul>
+            </div>
+
+            <div class="recipe-section">
+              <h4>👩‍🍳 Cara Membuat:</h4>
+              <ol id="recipeSteps"></ol>
+            </div>
+          </div>
+
+          <footer class="recipe-footer">
+            <button id="shareBtn" class="secondary outline">
+              <i class="fab fa-whatsapp"></i> Bagikan ke Keluarga
+            </button>
+          </footer>
+        </article>
+      </section>
+
+      <section id="emptyState" class="empty-state">
+        <article>
+          <div style="text-align: center; color: var(--muted-color)">
+            <i class="fas fa-utensils fa-3x" style="margin-bottom: 1rem; opacity: 0.5"></i>
+            <p>Resepmu akan muncul di sini.</p>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- Gallery moved outside the grid to be larger and centered -->
+    <section id="photoGallery" style="margin-top: 5rem; margin-bottom: 3rem;">
+      <h4 class="section-title" style="margin-bottom: 3rem;">📸 Inspirasi Menu</h4>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/images/1.jpg" alt="Inspirasi Menu 1">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/2.jpg" alt="Inspirasi Menu 2">
+        </div>
+        <div class="gallery-item">
+          <img src="assets/images/3.jpg" alt="Inspirasi Menu 3">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="ramadanTips" class="container">
+    <div class="section-title">
+      <h3>💡 Tips Ramadan Sehat</h3>
+      <p>Agar tetap bugar selama menjalankan ibadah puasa 🌙</p>
+    </div>
+    <div class="grid">
+      <article>
+        <h5>💧 Hidrasi Cukup</h5>
+        <p>Pastikan minum minimal 8 gelas air dari buka hingga sahur untuk menjaga hidrasi.</p>
+      </article>
+      <article>
+        <h5>🌾 Karbo Kompleks</h5>
+        <p>Pilih gandum atau nasi merah saat sahur agar energi bertahan lebih lama seharian.</p>
+      </article>
+      <article>
+        <h5>🥗 Nutrisi Seimbang</h5>
+        <p>Lengkapi piringmu dengan protein dan serat untuk rasa kenyang yang lebih awet.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container" style="text-align: center; font-size: 0.8rem; opacity: 0.7">
+    <small>Dibuat dengan ❤️ untuk Ramadan 2026 • Powered by MUHAMMAD RAKA DEFIAN</small>
+  </footer>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
